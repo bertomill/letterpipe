@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { db } from '../../firebase/config';
 import { 
   collection, 
@@ -47,7 +47,7 @@ export default function ContentUpload() {
   const [success, setSuccess] = useState(false);
   const [contentItems, setContentItems] = useState<ContentItem[]>([]);
 
-  const fetchContent = async () => {
+  const fetchContent = useCallback(async () => {
     if (!user) return;
     
     try {
@@ -72,12 +72,12 @@ export default function ContentUpload() {
     } catch (error) {
       console.error('Error fetching content:', error);
     }
-  };
+  }, [user]);
 
   // Fetch content on component mount and after new content is added
   useEffect(() => {
     fetchContent();
-  }, [user]);
+  }, [user, fetchContent]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
