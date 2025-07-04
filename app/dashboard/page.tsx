@@ -128,49 +128,49 @@ export default function Dashboard() {
     </div>
   );
 
-  if (activeView === 'home') {
-    return <WelcomeScreen />;
-  }
-
   return (
     <div>
-      <div className="border-b">
-        <nav className="-mb-px flex space-x-8">
-          <button
-            onClick={() => setActiveView('home')}
-            className={`${
-              activeView === 'home'
-                ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500'
-            } py-4 px-1 border-b-2`}
-          >
-            Dashboard
-          </button>
-          <button
-            onClick={() => setActiveView('content')}
-            className={`${
-              activeView === 'content'
-                ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500'
-            } py-4 px-1 border-b-2`}
-          >
-            Content Library
-          </button>
-          <button
-            onClick={() => setActiveView('write')}
-            className={`${
-              activeView === 'write'
-                ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500'
-            } py-4 px-1 border-b-2`}
-          >
-            Write Blog
-          </button>
-        </nav>
-      </div>
+      {activeView !== 'home' && (
+        <div className="border-b">
+          <nav className="-mb-px flex space-x-8">
+            <button
+              onClick={() => setActiveView('home')}
+              className={`${
+                activeView === 'home'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500'
+              } py-4 px-1 border-b-2`}
+            >
+              Dashboard
+            </button>
+            <button
+              onClick={() => setActiveView('content')}
+              className={`${
+                activeView === 'content'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500'
+              } py-4 px-1 border-b-2`}
+            >
+              Content Library
+            </button>
+            <button
+              onClick={() => setActiveView('write')}
+              className={`${
+                activeView === 'write'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500'
+              } py-4 px-1 border-b-2`}
+            >
+              Write Blog
+            </button>
+          </nav>
+        </div>
+      )}
 
       <div className="mt-6">
-        {activeView === 'content' ? <ContentUpload /> : <NewsletterEditor />}
+        {activeView === 'home' && <WelcomeScreen />}
+        {activeView === 'content' && <ContentUpload />}
+        {activeView === 'write' && <NewsletterEditor />}
       </div>
     </div>
   );
