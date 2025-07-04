@@ -28,7 +28,7 @@ export default function DashboardLayout({
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link href="/dashboard" className="text-blue-600 text-xl font-normal">
-                Letterpipe
+                BlogPatch
               </Link>
             </div>
             <div className="flex items-center">
