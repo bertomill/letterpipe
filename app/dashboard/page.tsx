@@ -128,6 +128,15 @@ export default function Dashboard() {
     </div>
   );
 
+  // Create a function to get button classes to avoid type narrowing issues
+  const getButtonClasses = (viewType: ActiveViewType) => {
+    return `${
+      activeView === viewType
+        ? 'border-blue-500 text-blue-600'
+        : 'border-transparent text-gray-500'
+    } py-4 px-1 border-b-2`;
+  };
+
   return (
     <div>
       {activeView !== 'home' && (
@@ -135,31 +144,19 @@ export default function Dashboard() {
           <nav className="-mb-px flex space-x-8">
             <button
               onClick={() => setActiveView('home')}
-              className={`${
-                activeView === 'home'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500'
-              } py-4 px-1 border-b-2`}
+              className={getButtonClasses('home')}
             >
               Dashboard
             </button>
             <button
               onClick={() => setActiveView('content')}
-              className={`${
-                activeView === 'content'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500'
-              } py-4 px-1 border-b-2`}
+              className={getButtonClasses('content')}
             >
               Content Library
             </button>
             <button
               onClick={() => setActiveView('write')}
-              className={`${
-                activeView === 'write'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500'
-              } py-4 px-1 border-b-2`}
+              className={getButtonClasses('write')}
             >
               Write Blog
             </button>
