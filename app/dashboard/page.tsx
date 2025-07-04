@@ -4,8 +4,10 @@ import { useState } from 'react';
 import ContentUpload from './components/ContentUpload';
 import NewsletterEditor from './components/NewsletterEditor';
 
+type ActiveViewType = 'home' | 'content' | 'write';
+
 export default function Dashboard() {
-  const [activeView, setActiveView] = useState<'home' | 'content' | 'write'>('home');
+  const [activeView, setActiveView] = useState<ActiveViewType>('home');
 
   const WelcomeScreen = () => (
     <div className="max-w-4xl mx-auto">
