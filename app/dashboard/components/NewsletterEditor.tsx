@@ -10,7 +10,6 @@ export default function NewsletterEditor() {
   const [loading, setLoading] = useState(false);
   const [isRecordingOutline, setIsRecordingOutline] = useState(false);
   const [isRecordingNotes, setIsRecordingNotes] = useState(false);
-  const [activeRecordingType, setActiveRecordingType] = useState<'outline' | 'notes' | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
 
@@ -30,7 +29,6 @@ export default function NewsletterEditor() {
       } else {
         setIsRecordingNotes(true);
       }
-      setActiveRecordingType(type);
 
       const stream = await navigator.mediaDevices.getUserMedia({ 
         audio: {
@@ -66,7 +64,6 @@ export default function NewsletterEditor() {
       console.error('Error starting recording:', error);
       setIsRecordingOutline(false);
       setIsRecordingNotes(false);
-      setActiveRecordingType(null);
     }
   };
 
@@ -77,7 +74,6 @@ export default function NewsletterEditor() {
     
     setIsRecordingOutline(false);
     setIsRecordingNotes(false);
-    setActiveRecordingType(null);
   };
 
   const transcribeAudio = async (audioBlob: Blob, type: 'outline' | 'notes') => {
